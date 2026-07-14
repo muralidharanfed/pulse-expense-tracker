@@ -1,6 +1,8 @@
 <<<<<<< HEAD
 # Pulse — Modern Expense Tracker
 
+live demo : https://muralidharanfed.github.io/pulse-expense-tracker/
+
 A frontend-only, production-quality expense tracker built with **React + Vite + Tailwind CSS v4**.
 All data is persisted to **Local Storage** — no backend, no auth, nothing leaves the browser.
 
