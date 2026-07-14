@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Pulse — Modern Expense Tracker
 
 A frontend-only, production-quality expense tracker built with **React + Vite + Tailwind CSS v4**.
@@ -64,3 +65,6 @@ src/
 
 Everything lives in `localStorage` under the `pulse.*` namespace (see `src/services/storageService.js`):
 transactions, budget, theme/currency settings, and unlocked achievements — all restored automatically on refresh.
+=======
+# pulse-expense-tracker
+>>>>>>> 7f33e70141118c1c72058938383611e9684dcc43
