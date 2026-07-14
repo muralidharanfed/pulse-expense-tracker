@@ -1,0 +1,229 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------- */
+/* Design tokens                                                          */
+/* ---------------------------------------------------------------------- */
+@theme {
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-mint: #2dd4a7;
+  --color-mint-dark: #1fa483;
+  --color-coral: #ff6b6b;
+  --color-gold: #f5b942;
+  --color-violet: #8b7fff;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Theme variable sets — each theme swaps these custom properties         */
+/* ---------------------------------------------------------------------- */
+:root,
+[data-theme="dark"] {
+  --bg-base: #080b14;
+  --bg-mesh-1: #0d3b34;
+  --bg-mesh-2: #241a4a;
+  --surface: 18 23 40;
+  --surface-alt: 24 30 52;
+  --border-soft: 255 255 255;
+  --border-alpha: 0.08;
+  --text-primary: #f4f6fb;
+  --text-secondary: #97a0bd;
+  --text-muted: #616b8a;
+  --accent: var(--color-mint);
+  --accent-soft: 45 212 167;
+}
+
+[data-theme="light"] {
+  --bg-base: #f3f5fa;
+  --bg-mesh-1: #d8f3ea;
+  --bg-mesh-2: #e6e2fb;
+  --surface: 255 255 255;
+  --surface-alt: 246 247 251;
+  --border-soft: 15 23 42;
+  --border-alpha: 0.06;
+  --text-primary: #12172b;
+  --text-secondary: #545e7d;
+  --text-muted: #8a93b3;
+  --accent: #14b892;
+  --accent-soft: 20 184 146;
+}
+
+[data-theme="ocean"] {
+  --bg-base: #061826;
+  --bg-mesh-1: #073a4c;
+  --bg-mesh-2: #0d2a4a;
+  --surface: 10 30 46;
+  --surface-alt: 14 38 58;
+  --border-soft: 255 255 255;
+  --border-alpha: 0.08;
+  --text-primary: #eaf6ff;
+  --text-secondary: #8fb4c9;
+  --text-muted: #5c7f93;
+  --accent: #22c1e0;
+  --accent-soft: 34 193 224;
+}
+
+[data-theme="forest"] {
+  --bg-base: #0a140d;
+  --bg-mesh-1: #163a1f;
+  --bg-mesh-2: #2b3a12;
+  --surface: 15 28 18;
+  --surface-alt: 20 36 24;
+  --border-soft: 255 255 255;
+  --border-alpha: 0.08;
+  --text-primary: #eefbef;
+  --text-secondary: #9cc0a2;
+  --text-muted: #64866c;
+  --accent: #6fce6a;
+  --accent-soft: 111 206 106;
+}
+
+[data-theme="purple"] {
+  --bg-base: #120a22;
+  --bg-mesh-1: #2c1a4d;
+  --bg-mesh-2: #3d1738;
+  --surface: 24 15 42;
+  --surface-alt: 32 20 54;
+  --border-soft: 255 255 255;
+  --border-alpha: 0.08;
+  --text-primary: #f6f2ff;
+  --text-secondary: #b6a3dd;
+  --text-muted: #7c6ba0;
+  --accent: #a685ff;
+  --accent-soft: 166 133 255;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Base                                                                    */
+/* ---------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  background-image:
+    radial-gradient(ellipse 80% 60% at 15% 0%, var(--bg-mesh-1) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 50% at 100% 20%, var(--bg-mesh-2) 0%, transparent 55%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+::selection {
+  background: rgb(var(--accent-soft) / 0.35);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--accent-soft) / 0.4) transparent;
+}
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgb(var(--accent-soft) / 0.35);
+  border-radius: 999px;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+.font-mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Glassmorphism surfaces                                                  */
+/* ---------------------------------------------------------------------- */
+.glass {
+  background: rgb(var(--surface) / 0.6);
+  border: 1px solid rgb(var(--border-soft) / var(--border-alpha));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.glass-solid {
+  background: rgb(var(--surface) / 0.92);
+  border: 1px solid rgb(var(--border-soft) / var(--border-alpha));
+}
+
+.text-primary {
+  color: var(--text-primary);
+}
+.text-secondary {
+  color: var(--text-secondary);
+}
+.text-muted {
+  color: var(--text-muted);
+}
+.accent {
+  color: var(--accent);
+}
+.bg-accent {
+  background-color: var(--accent);
+}
+.border-accent {
+  border-color: var(--accent);
+}
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus visibility */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Pulse ring keyframes for the signature Financial Health visual */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+.pulse-ring {
+  animation: pulse-ring 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(3deg); }
+}
+.animate-float {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, rgb(var(--surface-alt)) 25%, rgb(var(--surface)) 50%, rgb(var(--surface-alt)) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
